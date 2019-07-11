@@ -25,6 +25,7 @@ class Food(models.Model):
     description = models.TextField(max_length=255)
     donator = models.IntegerField(blank=False, null=True)
     alloted_to = models.IntegerField(blank=False, null=True)
+    units = models.CharField(max_length=255, default="No.s", blank=False, null=False)
 
     def __str__(self):
         return self.name
