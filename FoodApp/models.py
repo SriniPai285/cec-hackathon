@@ -23,17 +23,8 @@ class Food(models.Model):
     image = models.FileField(upload_to='food/', null=False, blank=False)
     partial_allowed = models.BooleanField(default=False)
     description = models.TextField(max_length=255)
-    donator = models.ForeignKey(
-        Organisation,
-        related_name='org',
-        blank=False,
-        null=False,
-        on_delete=models.CASCADE),
-    alloted_to = models.ForeignKey(
-        Organisation,
-        models.SET_NULL,
-        blank=True,
-        null=True),
+    donator = models.IntegerField(blank=False, null=True)
+    alloted_to = models.IntegerField(blank=False, null=True)
 
     def __str__(self):
         return self.name
