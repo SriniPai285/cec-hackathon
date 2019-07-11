@@ -2,19 +2,14 @@ from rest_framework import serializers
 from .models import Food, Organisation
 from django.contrib.auth.models import User
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model  = User
-        fields = ('id', 'username', 'email')
-
-class OrganisationSerializer(serializers.HyperlinkedModelSerializer):
-    user_details = UserSerializer()#many=True, read_only=True)
+class OrganisationSerializer(serializers.ModelSerializer):
     class Meta:
         model  = Organisation
-        fields = ('user_details', 'category', 'address', 'phone')
+        fields = ('id', 'name', 'email', 'category', 'address', 'phone')
 
-class FoodSerializer(serializers.HyperlinkedModelSerializer):
-    donator = OrganisationSerializer(many=True, read_only=True)
+class FoodSerializer(serializers.ModelSerializer):
+    donator_set = OrganisationSerializer(many=True, read_only=True)
+    alloted_to_set = OrganisationSerializer(many=True, read_only=True)
     class Meta:
         model  = Food
-        fields = ('name', 'available_till', 'image', 'partial_allowed', 'donator', 'created_at', 'description', 'alloted_to')
+        fields = ('name', 'available_till', 'image', 'partial_allowed', 'donator_set', 'created_at', 'description', 'alloted_to_set')

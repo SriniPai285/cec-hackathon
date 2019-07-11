@@ -4,13 +4,16 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Organisation(models.Model):
-    user_details = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE)
+    # user_details = User
+    # user_details = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, blank=False, null=True)
+    email = models.EmailField(null=True)
     category = models.CharField(max_length=255, blank=False, null=False)
     address = models.TextField(max_length=65535)
     phone = models.CharField(max_length=100, null=False, default="NO_PHONE")
 
     def __str__(self):
-        return str(self.user_details)
+        return str(self.name)
 
 class Food(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=False)
@@ -22,6 +25,7 @@ class Food(models.Model):
     description = models.TextField(max_length=255)
     donator = models.ForeignKey(
         Organisation,
+        related_name='org',
         blank=False,
         null=False,
         on_delete=models.CASCADE),
