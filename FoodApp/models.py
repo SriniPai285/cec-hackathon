@@ -18,14 +18,14 @@ class Organisation(models.Model):
 class Food(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=False)
     created_at = models.DateTimeField('created on ', auto_now_add=True)
-    quantity = models.IntegerField(default=0, blank=False, null=False)
+    quantity = models.IntegerField(default=0, blank=False, null=True)
     available_till = models.DateTimeField(null=False, blank=False)
-    image = models.FileField(upload_to='food/', null=False, blank=False)
-    partial_allowed = models.BooleanField(default=False)
-    description = models.TextField(max_length=255)
+    image = models.FileField(upload_to='food/', null=True, blank=False)
+    partial_allowed = models.BooleanField(default=False, null=True)
+    description = models.TextField(max_length=255, null=True)
     donator = models.IntegerField(blank=False, null=True)
     alloted_to = models.IntegerField(blank=False, null=True)
-    units = models.CharField(max_length=255, default="No.s", blank=False, null=False)
+    units = models.CharField(max_length=255, default="No.s", null=True)
 
     def __str__(self):
         return self.name

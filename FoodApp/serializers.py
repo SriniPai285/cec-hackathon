@@ -10,4 +10,4 @@ class OrganisationSerializer(serializers.ModelSerializer):
 class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model  = Food
-        fields = ('id', 'name', 'available_till', 'image', 'partial_allowed', 'donator', 'created_at', 'quantity', 'units', 'description', 'alloted_to')
+        fields = ('name', 'available_till', 'donator', 'created_at', 'quantity', 'units', 'description', 'alloted_to')
